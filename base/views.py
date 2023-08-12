@@ -12,7 +12,7 @@ from datetime import datetime
 
 
 class HomeView(TemplateView):
-    template_name = 'home/main.html'
+    template_name = 'main.html'
     extra_context = {'today': datetime.today()}
 
 # Create your views here.
