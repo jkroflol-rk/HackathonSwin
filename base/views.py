@@ -8,7 +8,11 @@ from django.http.response import HttpResponseRedirect
 from django.views.generic import CreateView,DetailView, ListView, UpdateView
 from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from datetime import datetime
 
 
+class HomeView(TemplateView):
+    template_name = 'home/main.html'
+    extra_context = {'today': datetime.today()}
 
 # Create your views here.
