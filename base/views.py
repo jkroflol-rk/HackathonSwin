@@ -24,6 +24,6 @@ from django.shortcuts import redirect
 
 class HomeView(TemplateView):
     template_name = 'maintemplates/main.html'
-    extra_context = {'today': datetime.today()}
+    # extra_context = {'today': datetime.today()}
 
 # Create your views here.
