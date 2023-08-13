@@ -23,7 +23,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 
 class HomeView(TemplateView):
-    template_name = 'maintemplates/main.html'
+    template_name = 'maintemplates/index.html'
     # extra_context = {'today': datetime.today()}
 
 # Create your views here.
