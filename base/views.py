@@ -10,7 +10,6 @@ from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 from django.views.generic import TemplateView
-
 from django.shortcuts import render
 from django.http import HttpResponse
 from datetime import datetime
@@ -23,7 +22,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 
 class HomeView(TemplateView):
-    template_name = 'maintemplates/index.html'
+    template_name = 'templates/index.html'
     # extra_context = {'today': datetime.today()}
 
-# Create your views here.
+
+
+def SignIn(request):
+    return render(request, 'templates/SignIn.html')
+def SignUp(request):
+    return render(request, 'templates/SignUp.html')
