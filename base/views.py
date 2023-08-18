@@ -28,6 +28,6 @@ class HomeView(TemplateView):
 
 
 def SignIn(request):
-    return render(request, 'templates/SignIn.html')
+    return render(request, 'SignIn.html')
 def SignUp(request):
-    return render(request, 'templates/SignUp.html')
+    return render(request, 'SignUp.html')
