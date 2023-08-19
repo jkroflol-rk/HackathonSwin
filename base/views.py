@@ -1,4 +1,5 @@
 from math import atan
+from django import forms
 import attr
 from django.shortcuts import render
 # from typing import Any
@@ -22,7 +23,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
-from django import forms
+from django.contrib.auth.models import User
 from django.shortcuts import redirect
 
 class HomeView(TemplateView):
@@ -33,8 +34,12 @@ class LoginCorrect(TemplateView):
     template_name = 'logintrue.html'
 
 class RegistrationForm(UserCreationForm):
-    username = forms.CharField(
-        label='Username:',
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username')
+
+    username = forms.EmailField(
+        label='Email:',
         widget=forms.TextInput(
             attrs = {
                 'placeholder': 'Enter your username',
@@ -44,7 +49,7 @@ class RegistrationForm(UserCreationForm):
         )
     )
 
-    firstname = forms.CharField(
+    first_name = forms.CharField(
         label='First Name:',
         widget=forms.TextInput(
             attrs = {
@@ -55,22 +60,11 @@ class RegistrationForm(UserCreationForm):
         )
     )
     
-    lastname = forms.CharField(
+    last_name = forms.CharField(
         label='Last Name:',
         widget=forms.TextInput(
             attrs = {
-                'placeholder': 'Enter your Last Name',
-                'id' : 'form3Example3c',
-                'class' : 'form-control',
-            }
-        )
-    )
-
-    email = forms.EmailField(
-        label='Email',
-        widget=forms.EmailInput(
-            attrs = {
-                'placeholder': 'Enter your Email',
+                'placeholder': 'Enter your last name',
                 'id' : 'form3Example3c',
                 'class' : 'form-control',
             }
@@ -98,6 +92,13 @@ class RegistrationForm(UserCreationForm):
             }
         )
     )
+
+    def save(self, commit=True):
+        user = super(UserCreationForm, self).save(commit=False)
+        user.email = user.username
+        user.save()
+        return user
+
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
         label='Username',
