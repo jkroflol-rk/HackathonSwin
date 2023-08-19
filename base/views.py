@@ -1,3 +1,5 @@
+from math import atan
+import attr
 from django.shortcuts import render
 # from typing import Any
 from django.db.models.query import QuerySet
@@ -19,15 +21,112 @@ from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
+from django import forms
 from django.shortcuts import redirect
 
 class HomeView(TemplateView):
     template_name = 'index.html'
     # extra_context = {'today': datetime.today()}
 
+class LoginCorrect(TemplateView):
+    template_name = 'logintrue.html'
+
+class RegistrationForm(UserCreationForm):
+    username = forms.CharField(
+        label='Username:',
+        widget=forms.TextInput(
+            attrs = {
+                'placeholder': 'Enter your username',
+                'id' : 'form3Example3c',
+                'class' : 'form-control',
+            }
+        )
+    )
+
+    firstname = forms.CharField(
+        label='First Name:',
+        widget=forms.TextInput(
+            attrs = {
+                'placeholder': 'Enter your first name',
+                'id' : 'form3Example3c',
+                'class' : 'form-control',
+            }
+        )
+    )
+    
+    lastname = forms.CharField(
+        label='Last Name:',
+        widget=forms.TextInput(
+            attrs = {
+                'placeholder': 'Enter your Last Name',
+                'id' : 'form3Example3c',
+                'class' : 'form-control',
+            }
+        )
+    )
+
+    email = forms.EmailField(
+        label='Email',
+        widget=forms.EmailInput(
+            attrs = {
+                'placeholder': 'Enter your Email',
+                'id' : 'form3Example3c',
+                'class' : 'form-control',
+            }
+        )
+    )
+
+    password1 = forms.CharField(
+        label='Password', 
+        widget=forms.PasswordInput(
+            attrs = {
+                'placeholder': 'Password',
+                'id' : 'form3Example3c',
+                'class' : 'form-control',
+            }
+        )
+    )
+
+    password2 = forms.CharField(
+        label='Confirm Password', 
+        widget=forms.PasswordInput(
+            attrs = {
+                'placeholder': 'Confirm Password',
+                'id' : 'form3Example3c',
+                'class' : 'form-control',
+            }
+        )
+    )
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(
+        label='Username',
+        widget=forms.TextInput(
+            attrs = {
+                'placeholder': 'Enter username',
+                'class' : 'form-control form-control-lg'
+            }
+        )
+    )
+
+    password = forms.CharField(
+        label='Password', 
+        widget=forms.PasswordInput(
+            attrs = {
+                'placeholder': 'Enter password',
+                'class' : 'form-control form-control-lg'
+            }
+        )
+    )
+
+class LoginInterfaceView(LoginView):
+    template_name = 'SignIn.html'
+    authentication_form = LoginForm
+    success_url = '/'
+
+class SignupView(CreateView):
+    form_class = RegistrationForm
+    template_name = 'SignUp.html'
+    success_url = '/signin'
 
 
-def SignIn(request):
-    return render(request, 'SignIn.html')
-def SignUp(request):
-    return render(request, 'SignUp.html')
