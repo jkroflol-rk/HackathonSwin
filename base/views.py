@@ -1,6 +1,6 @@
 from math import atan
 from django import forms
-import attr
+# import attrs
 from django.shortcuts import render
 # from typing import Any
 from django.db.models.query import QuerySet
