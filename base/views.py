@@ -1,5 +1,5 @@
 from math import atan
-import attr
+# import attr
 from django.shortcuts import render
 # from typing import Any
 from django.db.models.query import QuerySet
