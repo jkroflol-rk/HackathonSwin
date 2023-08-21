@@ -13,7 +13,23 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class CreateConfigCLI(CreateView):
     model = SwitchConfig
     fields = ['input_data', 'output']
-    success_url = ''
-    template_name = ''
+    success_url = 'config'
+    template_name = 'addconfig.html'
+
+class ViewListConfig(ListView):
+    model = SwitchConfig
+    context_object_name = "configs"
+    template_name = "viewlistconfig.html"
+
+class DeleteConfig(DeleteView):
+    model = SwitchConfig
+    template_name = "deleteconfig.html"
+    success_url = "/topology/config"
+class ConfigDetail(DetailView):
+    model = SwitchConfig
+    context_object_name = "config"
+    template_name = "configdetail.html"
+    # login_url = "/login"
+    
 
 

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1 class="my-5">These are the Config:</h1> <a href="{% url 'addconfig' %}">Add config</a>
+    <div class="row row-cols3 g-2">
+        {% for config in configs %}
+        <div class="col">
+            <div class="p-3 border">
+                
+                <a href="{% url 'configdetail' pk=config.id %}"> <h3>{{config.input_data}}</h3>
+                {{config.output|truncatechars:15}}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

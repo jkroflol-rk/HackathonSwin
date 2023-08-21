@@ -1,6 +1,7 @@
 # This is a sample Python script.
 import serial
 import time
+from topology.models import SwitchConfig  # Import your model
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
@@ -24,11 +25,7 @@ def connectSerial():
     # in this case it returns str COM3
     print(ser.name)
     # first command (hitting enter)
-    command = "\r\n"
-    # convert str to binary (commands sent to switch must be binary)
-    command = str.encode(command)
-    # send the command to the switch
-    ser.write(command)
+
     # wait a sec
     time.sleep(0.5)
     ser.inWaiting()
@@ -47,6 +44,8 @@ def connectSerial():
         output = ser.read(225)
         output = output.decode("utf-8","ignore")
         print(output)
+        serial_data = SwitchConfig(output=output) #output = Switch# enable
+        serial_data.save()
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
