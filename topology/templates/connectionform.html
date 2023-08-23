@@ -1,0 +1,6 @@
+<!-- serial_connection_form.html -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Connect Serial</button>
+</form>
