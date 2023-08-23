@@ -30,6 +30,8 @@ class ConfigDetail(DetailView):
     context_object_name = "config"
     template_name = "configdetail.html"
     # login_url = "/login"
+class RunScript():
+    
     
 
 
