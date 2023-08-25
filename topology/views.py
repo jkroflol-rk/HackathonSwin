@@ -32,7 +32,6 @@ class ConfigDetail(DetailView):
     template_name = "configdetail.html"
     # login_url = "/login"
 from .forms import SerialConnectionForm
-import serial
 import time
 def connectSerial(input, output):
     # creating your serial object
