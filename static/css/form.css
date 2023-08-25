@@ -540,9 +540,7 @@ form .input_field {
 .service_introduction {
   width: 100%;
   height: fit-content;
-  background: url("Service.jpg") ,white ;
-  background-size: cover;
-  backdrop-filter: blur(50px);
+  background-color: white;
   display: flex;
   justify-content: center;
   padding-left: 15px;
