@@ -137,6 +137,8 @@ class SignupView(CreateView):
 class Dashboard(TemplateView):
     template_name = 'dashboard.html'
 
+class About(TemplateView):
+    template_name = 'about.html'
 class EditProfile(TemplateView):
     template_name = 'editprofile.html'
 

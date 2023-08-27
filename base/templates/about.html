@@ -1,33 +1,93 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<main style="background-image: url('{% static "images/Service.jpg" %}');">
-    <div class="text-center">
-        <h1 class="p-5">About Team N</h1>
+<div class="bg-light">
+  <div class="container py-5">
+    <div class="row h-100 align-items-center py-5">
+      <div class="col-lg-6">
+        <h1 class="display-4">About Team N</h1>
+        <p class="lead text-muted mb-0">Team N is your go-to resource for mastering the art of networking. Our mission is simple – we help you forge valuable connections that propel your personal and professional growth. Join us today and unlock a world of opportunities!</p>
+
+      </div>
+      <div class="col-lg-6 d-none d-lg-block"><img src="https://bootstrapious.com/i/snippets/sn-about/illus.png" alt="" class="img-fluid"></div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white py-5">
+  <div class="container py-5">
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-6 order-2 order-lg-1"><i class="fa fa-bar-chart fa-2x mb-3 text-primary"></i>
+        <h2 class="font-weight-light">The Origin</h2>
+        <p class="font-italic text-muted mb-4">Born from Swinburne University of Technology and Hanoi University of Science and Technology, Team N originates as a student-driven initiative. Our foundation is built on the collective zeal to revolutionize networking experiences.</p>
+      </div>
+      <div class="col-lg-5 px-5 mx-auto order-1 order-lg-2"><img src="https://bootstrapious.com/i/snippets/sn-about/img-1.jpg" alt="" class="img-fluid mb-4 mb-lg-0"></div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-lg-5 px-5 mx-auto"><img src="{% static 'images/vandai.png' %}" alt="" class="img-fluid rounded-circle img-thumbnail shadow-sm mb-4 mb-lg-0"></div>
+      <div class="col-lg-6"><i class="fa fa-leaf fa-2x mb-3 text-primary"></i>
+        <h2 class="font-weight-light">Meet our instructor</h2>
+          <p class="font-italic text-muted mb-4">Pham Van Dai</p>
+        <span class="font-italic text-muted mb-4">Lecturer, Swinburne University of Technology</span>
+          <p class="font-italic text-muted mb-4">PhD, Bonch-Bruevich Saint-Petersburg State University of Telecommunications</p><a href="#" class="btn btn-light px-5 rounded-pill shadow-sm">Contact</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-light py-5">
+  <div class="container py-5">
+    <div class="row mb-4">
+      <div class="col-lg-5">
+        <h2 class="display-4 font-weight-light">Our team</h2>
+        <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{% static 'images/lxn.jpg' %}" alt="nhat" width="100" height="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" style="height: 100px; width: 100px;">
+          <h5 class="mb-0"><a href="https://www.linkedin.com/in/xuan-nhat-le-59b829278/">Le Xuan Nhat</a></h5><span class="small text-uppercase text-muted">Swinburne University of Technology</span>
+
+        </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{% static 'images/dnk.jpg' %}" alt="nhat" width="100" height="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"  style="height: 100px; width: 100px;">
+          <h5 class="mb-0"><a href="https://www.linkedin.com/in/nam-kh%C3%A1nh-%C4%91%E1%BA%B7ng-9559461a4/">Dang Nam Khanh</a></h5><span class="small text-uppercase text-muted">Swinburne University of Technology</span>
+
+        </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{% static 'images/dqt2.jpg' %}" alt="nhat" width="100" height="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"  style="height: 100px; width: 100px;">
+          <h5 class="mb-0"><a href="https://www.linkedin.com/in/thanh-duong-b2a64421b/">Duong Quang Thanh</a></h5><span class="small text-uppercase text-muted">Swinburne University of Technology</span>
+
+        </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{% static 'images/hta.jpg' %}" alt="nhat" width="100" height="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"  style="height: 100px; width: 100px;">
+          <h5 class="mb-0"><a href="https://www.linkedin.com/in/thanh-an-ho-321078242/">Ho Thanh An</a></h5><span class="small text-uppercase text-muted">Swinburne University of Technology</span>
+
+        </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{% static 'images/lxn.jpg' %}" alt="nhat" width="100" height="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"  style="height: 100px; width: 100px;">
+          <h5 class="mb-0"><a href="https://www.linkedin.com/in/xuan-nhat-le-59b829278/">Le Xuan Nhat</a></h5><span class="small text-uppercase text-muted">Swinburne University of Technology</span>
+
+        </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-5">
+        <div class="bg-white rounded shadow-sm py-5 px-4"><img src="{% static 'images/lxn.jpg' %}" alt="nhat" width="100" height="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"  style="height: 100px; width: 100px;">
+          <h5 class="mb-0"><a href="https://www.linkedin.com/in/xuan-nhat-le-59b829278/">Le Xuan Nhat</a></h5><span class="small text-uppercase text-muted">Swinburne University of Technology</span>
+
+        </div>
+        </div>
+
+
+      <!-- End-->
 
     </div>
-    <div class="col">
-
-		<div class="col d-flex flex-sm-column flex-md-column flex-lg-row align-items-center justify-content-center">
-
-			<img src="{% static 'images/teamimg.jpg' %}" alt="team picture" class="first_image col-lg-5 col-sm-10 col-md-8">
-			<div class="d-flex flex-column align-items-center justify-content-center col-lg-6 col-sm-10" >
-			    <div class="our_vision_title">
-					<h2>Our vision</h2>
-					<p>We aim to create networking solutions remotely by combining web development, database usage and IoT knowlege.</p>
-				</div>
-				<div class=>
-                    <h2>Our Origin</h2>
-					<p>Our group was formed on February 2023 for the subject TNE10006: Network and Switching.</p>
-					<p>We pride ourselves on our background knowlege, diverse areas of expertise for each member and the ability to improvise on any situation. That is why we enter this competetiion, hoping to make changes and success.</p>
-					<p>On 5th Match 2023 Dr. Pham Van Dai take us under is direct tutorlege so that we could learn and master our networking skills as well as professional work ethic and behaviours.</p>						</div>
-				</div>
-		</div>
-    </div>
-
-    
-    
-</main>
+  </div>
+</div>
 
 
 {% endblock %}
