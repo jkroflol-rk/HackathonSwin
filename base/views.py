@@ -31,8 +31,9 @@ class HomeView(TemplateView):
     # extra_context = {'today': datetime.today()}
 
 class LoginCorrect(TemplateView):
-    template_name = 'logintrue.html'
-
+    template_name = 'index.html'
+class LogoutCorrect(LogoutView):
+    next_page = '/'
 class RegistrationForm(UserCreationForm):
     class Meta:
         model = User
@@ -125,9 +126,20 @@ class LoginInterfaceView(LoginView):
     authentication_form = LoginForm
     success_url = '/'
 
+
 class SignupView(CreateView):
     form_class = RegistrationForm
     template_name = 'SignUp.html'
     success_url = '/signin'
+    #
+
+
+class Dashboard(TemplateView):
+    template_name = 'dashboard.html'
+
+class About(TemplateView):
+    template_name = 'about.html'
+class EditProfile(TemplateView):
+    template_name = 'editprofile.html'
 
 

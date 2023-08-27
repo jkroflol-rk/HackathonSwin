@@ -1,44 +1,77 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Simple Website</title>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> -->
 
-</head>
-<body>
-    <header>
-        <h1>Welcome to My Website</h1>
-    </header>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="introduction_page" style="background-image: url('{% static "images/background.jpg" %}');">
 
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+        <a href="#service_introduction"><i class="fa-solid fa-chevron-down" id="down_icon"></i></a>
+        <div class="intro_text animate__animated animate__fadeInRight">
+            <h1>Network Configurator</h1>
+            <p>Made easy with Cisco Packet Tracer</p>
+            <br>
+            {% if user.is_authenticated %}
+            {% else %}
+            <a href="/signin" class="intro_btn btn1">Sign In</a>
+            <a href="/signup" class="intro_btn btn2">Sign Up</a>
+            {% endif %}
+        </div>
 
-    <main>
-        <section>
-            <h2>About Us</h2>
-            <p>We are a small and friendly team passionate about web development.</p>
-            <p class="text-primary">Test css</p>
-            <img src="images/3650.png" alt="myphoto">
-        </section>
+    </div>
 
-        <section>
-            <h2>Our Services</h2>
-            <ul>
-                <li>Website Design</li>
-                <li>Frontend Development</li>
-                <li>Responsive Design</li>
-            </ul>
-        </section>
-    </main>
+    <div class="col p-5 d-flex flex-lg-row flex-column justify-content-center align-items-center">
+        <img src="{%  static 'images/server.png' %}" alt="photo" class="col-lg-4 col-md-8 col-10">
+        <div class="col-lg-6 col-md-8 col-10 ">
+            <h1 >A peek at the service</h1>
+            <p >Get your business connected and thriving with our top-quality devices, efficient network
+                structures, and reliable configuration work. We specialize in providing tailored network
+                solutions for businesses of all sizes.</p>
+            <p class="m-1">Here are some services that we bring you:</p>
+            <ol>
+                <li>Connect your offices</li>
+                <li>Reliable service</li>
+                <li>Security</li>
+                <li>Fast setup</li>
+                <li>Account registration</li>
+            </ol>
+        </div>
+    </div>
+    <div class="open_source">
+        <div class="left_logo">
+            <h1>Networking Partner</h1>
+            <img src="{% static 'images/ciscologo.png' %}" alt="Image">
+        </div>
 
-    <footer>
-        <p>&copy; 2023 My Simple Website</p>
-    </footer>
-</body>
-</html>
+        <div class="right_logo">
+            <div>
+                <h3>Source code</h3>
+                <p> <a href="https://js.cytoscape.org/">cytoscapejs</a></p>
+                <p><a href="https://cassandra.apache.org/doc/latest/cassandra/cql/">Cassandra Query Language</a></p>
+                <p><a href="https://swiperjs.com/">Swiperjs</a></p>
+                <p><a href="https://animate.style/">AnimateCSS</a></p>
+                <p><a>HTML, CSS, Javascript, PHP<a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="logo_source d-lg-flex">
+
+        <div class="col-lg-7 col-sm-12 p-3 mt-3">
+            <h1 class="text-center">About the Configurator</h1>
+            <span class="align-content-center d-flex align-items-center justify-content-center">This network configurator was made as a project in Swinburne Hackathon 2023</span>
+            <h1 class="font-weight text-center mt-5">In Collaboration with</h1>
+            <div class="logo_container col-12 d-flex align-items-center justify-content-center">
+                    <img class="col-2" src="{% static 'images/datastaxlogo.jpg' %} " alt="datastaxlogo">
+                    <img class="col-2" src="{% static 'images/Picture1.png'  %} " alt="swinburnelogo">
+                    <img class="col-2" src="{% static 'images/swinburnelogo.png'  %} " alt="swinburne">
+                    <img class="col-2" src="{% static 'images/soict.png'  %} " alt="akathonlogo">
+                    <img class="col-2" src="{% static 'images/cisco.png'  %} " alt="akathonlogo">
+            </div>
+        </div>
+        <div class="d-flex col-lg-4 col-sm-12 justify-content-lg-start justify-content-sm-center align-items-center">
+            <img src="{% static 'images/Hackathon.jpg' %}" alt="hackathon" class="col-lg-12 col-sm-8" >
+        </div>
+
+    </div>
+</main>
+{% endblock %}
