@@ -216,4 +216,4 @@ def main():
     connectVlan(merge_vlan, accessDevice)
     defineVlanPort(vlan, accessDevice, portDevice, distSwt_num)
     networkDevice = accessDevice + distDevice + coreDevice + router
-    return networkDevice, portDevice
+    return networkDevice, portDevice, vlan
