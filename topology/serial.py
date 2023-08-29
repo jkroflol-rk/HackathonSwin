@@ -1,24 +1,20 @@
 # This is a sample Python script.
 
-from topology.models import SwitchConfig  # Import your model
+# from topology.models import SwitchConfig  # Import your model
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 import serial
 import time
 def connectSerial():
     # creating your serial object
     ser = serial.Serial(
-        port='COM7',  # COM is on windows, linux is different
+        port='COM6',  # COM is on windows, linux is different
         baudrate=9600,  # many different baudrates are available
         parity='N',  # no idea
         stopbits=1,
         bytesize=8,
-        timeout=8  # 8 seconds seems to be a good timeout, may need to be increased
+        timeout=0.1  # 8 seconds seems to be a good timeout, may need to be increased
     )
 
     # open your serial object
@@ -28,7 +24,7 @@ def connectSerial():
     # first command (hitting enter)
 
     # wait a sec
-    time.sleep(0.5)
+    time.sleep(0.1)
     ser.inWaiting()
     # get the response from the switch
     input_data = ser.read(225)  # (how many bytes to limit to read)
@@ -40,16 +36,16 @@ def connectSerial():
         command = input('')
         command = str.encode(command+'\r\n')
         ser.write(command)
-        time.sleep(0.5)
+        time.sleep(0.1)
         ser.inWaiting()
         output = ser.read(225)
         output = output.decode("utf-8","ignore")
         print(output)
-        serial_data = SwitchConfig(output=output) #output = Switch# enable
-        serial_data.save()
+        # serial_data = SwitchConfig(output=output) #output = Switch# enable
+        # serial_data.save()
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    # print_hi('PyCharm')
     connectSerial()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
