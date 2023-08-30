@@ -6,7 +6,7 @@
 
 import serial
 import time
-def connectserial():
+def connectserial(input, request):
     # creating your serial object
     ser = serial.Serial(
         port='COM1',  # COM is on windows, linux is different
