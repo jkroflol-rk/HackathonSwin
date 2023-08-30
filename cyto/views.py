@@ -48,7 +48,7 @@ def process(request):
     output_array = []
 
     for i in range(0, department):
-        output = f"{names[i]} : {vlans[i]}"
+        output = dict(name = names[i], host=vlans[i])
         output_array.append(output)
 
     if 'array' not in request.session:
