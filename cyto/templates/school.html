@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div id="form-container" class="animate__animated animate__fadeInDown">
+    <form action="{% url 'process_school' %}" method="POST" id="form">
+        {% csrf_token %}
+        <h1>LAN Design</h1>
+        <label for="departments">Enter the number of Departments:</label>
+        <input type="number" name="departments" id="departments" placeholder="Max departments is 5, additional fields will be shown!" max="5" required>
+        <label for="student">Enter the number of Student:</label>
+        <input type="number" name="student" id="student" placeholder="Max departments is 1200 student" max="1200" required>
+        
+        <span id="enterhosts"></span>
+        
+        
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<script src="{% static 'js/form.js' %}">
+
+</script>
+{% endblock content %}
+
