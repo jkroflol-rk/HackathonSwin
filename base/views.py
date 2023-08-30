@@ -103,6 +103,7 @@ class RegistrationForm(UserCreationForm):
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
         label='Username',
+        
         widget=forms.TextInput(
             attrs = {
                 'placeholder': 'Enter username',
