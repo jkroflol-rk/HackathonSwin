@@ -33,11 +33,16 @@
                             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="/about">About Us</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/topology/topology">Topology</a>
+                        </li>
+
                         {% if user.is_authenticated %}
                             <li class="nav-item">
                             <a class="nav-link" href="/admin/">Admin</a>
@@ -68,7 +73,7 @@
         {% block content %}
         {% endblock %}
 
-        <footer>
+        <footer class="bg-light">
             
             <hr style="background-color: #424141;">
             <div class=" col d-flex flex-column justify-content-center align-items-center">
@@ -78,5 +83,4 @@
         </footer>
     </div>
 </body>
-<script src="{% static 'js/animation.js' %}">
 </html>
