@@ -9,6 +9,10 @@ from django.views.generic import CreateView,DetailView, ListView, UpdateView
 from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
+from .forms import VlanForm
+from .forms import WifiForm
+from .models import WifiConfig
+from .models import VlanConfig
 # Create your views here.
 
 class CreateConfigCLI(CreateView):
@@ -87,6 +91,14 @@ def connect_serial(request):
 
     return render(request, 'connectionform.html', {'form': form})
     
-    
+class Vlan_input(CreateView):
+    model = VlanConfig
+    fields = ['vlan_name', 'host']
+    success_url = 'config'
+    template_name = 'addconfig.html'
 
-
+class Wifi_input(CreateView):
+    model = WifiConfig
+    fields = ['wifi_num', 'printer_num', 'devices_num']
+    success_url = 'config'
+    template_name = 'addconfig.html'
