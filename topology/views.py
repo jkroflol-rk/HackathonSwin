@@ -107,8 +107,9 @@ def connect_serial(request):
         if form.is_valid():
             if request.session.get('enable') != None:
                 com_port = form.cleaned_data['com_port']
+                if  request.session.get('hostname') == None:
 
-                request.session['hostname'] = "Switch"
+                    request.session['hostname'] = "Switch"
 
 
                     
