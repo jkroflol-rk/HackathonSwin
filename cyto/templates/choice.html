@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<a type="button" class="btn btn-primary" href="/cyto/input">Office</a>
-<a type="button" class="btn btn-primary" href="/cyto/inputhome">Home</a>
-<a type="button" class="btn btn-primary" href="/cyto/inputschool">School</a>
+
+<h1 class="my-5 text-center">Available Configurations</h1> 
+
+    <div class="row row-cols-1 row-cols-lg-3 g-2 p-5 d-flex justify-content-center flex-wrap">
+        <a type="button" class="btn btn-primary" href="/cyto/input" style="margin: 20px">Office</a>
+        <a type="button" class="btn btn-primary" href="/cyto/inputhome" style="margin: 20px">Home</a>
+        <a type="button" class="btn btn-primary" href="/cyto/inputschool" style="margin: 20px">School</a>
+
+    </div>
+
 {% endblock content %}
