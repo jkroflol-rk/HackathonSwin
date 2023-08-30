@@ -143,4 +143,7 @@ class About(TemplateView):
 class EditProfile(TemplateView):
     template_name = 'editprofile.html'
 
+class Devices(TemplateView):
+    template_name = 'devices.html'
+
 
