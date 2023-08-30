@@ -83,11 +83,13 @@ def connectSerial(input, output, request):
     input = int(input)
     finaloutput = input * input
 
-    if request.session.get('history') == None:
+    if (request.session.get('history') == None and request.session.get('output') == None):
         request.session['history'] = ""
+        request.session['output'] = ""
+
     request.session['history'] += str(finaloutput) + "\n"
     
-    request.session['output'] += (finaloutput)
+    request.session['output'] += str(finaloutput)
     return finaloutput
 
 

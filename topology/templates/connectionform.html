@@ -3,6 +3,8 @@
 <div class="d-flex justify-content-center p-5">
     <div class="border round p-5">
         <h1 class="text-center pb-5">Add Your Connection</h1>
+        <h1>{{finaloutput}}</h1>
+        <pre style="border: solid 1px black">{{history}}</pre>
         <form method="post">    
             {% csrf_token %}
             {{ form.as_p }}
