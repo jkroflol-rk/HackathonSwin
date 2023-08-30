@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div id="form-container" class="animate__animated animate__fadeInDown">
+    <form action="{% url 'process' %}" method="POST" id="form">
+        {% csrf_token %}
+        <h1>LAN Design</h1>
+        <label for="departments">Enter the number of Departments:</label>
+        <input type="number" name="departments" id="departments" placeholder="Max departments is 5, additional fields will be shown!" max="5" required>
+        
+        <span id="enterhosts"></span>
+        
+        
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<script src="{% static 'js/form.js' %}">
 
-</body>
-</html>
+</script>
+{% endblock content %}
+

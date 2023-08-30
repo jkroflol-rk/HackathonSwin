@@ -1,18 +1,19 @@
+from pipes import Template
 from django.shortcuts import render
 from django.http import HttpResponse, FileResponse
 from django.template import loader
 from typing import Any
 from django.db.models.query import QuerySet
 from django.forms.models import BaseModelForm
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.views.generic import CreateView, DetailView, ListView, UpdateView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView, TemplateView
 from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 
-from .forms import VlanForm, WifiForm
-from .models import VlanConfig, WifiConfig
 from cyto import final, school, star
+import json
 
 def cyto(request):
     networkDevice, portDevice, vlan = final.cyto_json()
@@ -36,45 +37,30 @@ def star_cyto(request):
     template = loader.get_template('cyto.html')
     return HttpResponse(template.render())
 
-# class VlanCreateView(LoginRequiredMixin, CreateView):
-#     model = VlanConfig
-#     success_url = ''
-#     form_class = VlanForm
-#     login_url = "/signin"
-#
-#     def form_valid(self, form):
-#         self.object = form.save(commit=False)
-#         self.object.user = self.request.user
-#         self.object.save()
-#         return HttpResponseRedirect(self.get_success_url())
-#
-# class WifiCreateView(LoginRequiredMixin, CreateView):
-#     model = WifiConfig
-#     success_url = ''
-#     form_class = WifiForm
-#     login_url = "/signin"
-#
-#     def form_valid(self, form):
-#         self.object = form.save(commit=False)
-#         self.object.user = self.request.user
-#         self.object.save()
-#         return HttpResponseRedirect(self.get_success_url())
+class input(TemplateView):
+    template_name = 'form.html'
 
-def WifiFormPost(request):
-    if request.method == 'POST':
-        form = VlanForm(request.POST)
-        if form.is_valid():
-            request.session['vlan_name'] = form.cleaned_data['vlan_name']
-            request.session['host'] = form.cleaned_data['host']
-    else:
+def process(request):
+    department = int(request.POST['departments'])
+    names = request.POST.getlist('name[]')
+    vlans = request.POST.getlist('host[]')
 
-        form = SerialConnectionForm()
-        if request.session.get('history') != None:
-            history = request.session.get('history')
-        else:
-            history = "Nothing"
+    output_array = []
 
-    return render(request, 'connectionform.html', {'form': form, 'history': history})
+    for i in range(0, department):
+        output = f"{names[i]} : {vlans[i]}"
+        output_array.append(output)
+
+    if 'array' not in request.session:
+        request.session['array'] = []
+
+    request.session['array'].extend(output_array)
+    request.session.modified = True
+
+    with open('./static/js/output.json', 'w') as json_file:
+        json.dump(output_array, json_file)
+
+    return redirect('/cyto')
 
 def saveJsonFile(json, filename):
     # open text file
@@ -83,5 +69,6 @@ def saveJsonFile(json, filename):
     text_file.write(json)
     # close file
     text_file.close()
+    
 
 
