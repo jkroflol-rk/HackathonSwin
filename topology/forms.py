@@ -4,7 +4,7 @@ from .models import WifiConfig
 
 
 class SerialConnectionForm(forms.Form):
-    com_port = forms.CharField(label='Input', max_length=10)
+    com_port = forms.CharField(label='Input', max_length=30)
     
 
 
