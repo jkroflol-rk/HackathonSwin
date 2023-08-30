@@ -13,6 +13,7 @@ from .forms import VlanForm
 from .forms import WifiForm
 from .models import WifiConfig
 from .models import VlanConfig
+from django.views.generic import TemplateView
 # Create your views here.
 
 class CreateConfigCLI(CreateView):
@@ -20,6 +21,9 @@ class CreateConfigCLI(CreateView):
     fields = ['input_data', 'output']
     success_url = 'config'
     template_name = 'addconfig.html'
+
+class Topology(TemplateView):
+    template_name = 'topology.html'
 
 class ViewListConfig(ListView):
     model = SwitchConfig

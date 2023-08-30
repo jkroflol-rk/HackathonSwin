@@ -1,10 +1,17 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-<form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete {{config.title}}</p>
-    <p>This action can't be undone</p>
+<form method="post">
+    <div class="col d-flex justify-content-center p-5">
+        <img src="{% static 'images/warning.png' %}" alt="warn" class="col-lg-2 col-8">
+    </div>
+    <div class="text-center p-5">
+        {% csrf_token %}
+        <p>Are you sure you want to delete {{config.title}}</p>
+        <p>This action can't be undone</p>
 
-    <input type="submit" class="btn btn-danger" value="Confirm">
+        <input type="submit" class="btn btn-danger" value="Confirm">
+    </div>
 </form>
 
 

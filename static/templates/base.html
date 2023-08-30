@@ -33,11 +33,16 @@
                             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="/about">About Us</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard">Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/topology/topology">Topology</a>
+                        </li>
+
                         {% if user.is_authenticated %}
                             <li class="nav-item">
                             <a class="nav-link" href="/admin/">Admin</a>
