@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 p {
   text-align: center;
@@ -11,8 +7,7 @@ p {
   margin-top: 0px;
 }
 </style>
-</head>
-<body>
+
 
 <p id="demo"></p>
 
@@ -43,12 +38,9 @@ var countDownDate = now1+10*1000;
   // If the count down is over, write some text 
   if (distance < 0) {
     clearInterval(x);
-    window.location.href = "{% url '/topology/booking' %}";
+    window.location.href = "{% url 'book' %}";
     document.getElementById("demo").innerHTML = "EXPIRED";
   }
 }, 1000);
 </script>
-
-</body>
-</html>
 {% endblock content %}
