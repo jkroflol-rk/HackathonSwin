@@ -101,19 +101,18 @@ def connect_serial(request):
         if form.is_valid():
             com_port = form.cleaned_data['com_port']
             baud_rate = form.cleaned_data['baud_rate']
-            finaloutput =  connectserial(com_port, request)
-            return redirect('config')  # Redirect to a success page
+            history =  connectserial(com_port, request)
+            return redirect('connect_serial')  # Redirect to a success page
     else:
 
         form = SerialConnectionForm()
-        if(request.session.get('output') != None and request.session.get('history') != None):
+        if request.session.get('history') != None:
             finaloutput = request.session.get('output')
             history = request.session.get('history')
         else:
-            finaloutput = "Nothing"
             history = "Nothing"
 
-    return render(request, 'connectionform.html', {'form': form, 'finaloutput': finaloutput, 'history': history})
+    return render(request, 'connectionform.html', {'form': form, 'history': history})
     
 class Vlan_input(CreateView):
     model = VlanConfig
