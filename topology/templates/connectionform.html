@@ -1,12 +1,16 @@
-<!-- serial_connection_form.html -->
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
-<h1>{{finaloutput}}</h1>
-<pre style="border: solid 1px black">{{history}}</pre>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Connect Serial</button>
-</form>
+<div class="d-flex justify-content-center p-5">
+    <div class="border round p-5">
+        <h1 class="text-center pb-5">Add Your Connection</h1>
+        <form method="post">    
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary  type="submit">Connect Serial</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 {% endblock %}

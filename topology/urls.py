@@ -8,5 +8,7 @@ urlpatterns = [
     path('<int:pk>/configdetail', views.ConfigDetail.as_view(), name='configdetail'),
     path('<int:pk>/deleteconfig', views.DeleteConfig.as_view(), name='deleteconfig'),
     path('connect', views.connect_serial, name='connect_serial'),
+    path('test', views.Vlan_input.as_view(), name="adsa"),
+    path('topology', views.Topology.as_view(), name="topology")
 ]
 
