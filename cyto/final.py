@@ -190,14 +190,20 @@ def defineVlanPort(vlan, accessDevice, portDevice, number):
                     access.data, {"id": VLAN.id}, labelTarget, "Ethernet"
                 )
                 portDevice.append(new_port)
-
-
+def get_input_json():
+    vlan_list = []
+    file = open('./static/js/output.json', 'r')
+    vlan = json.loads(file.read())
+    for data in vlan:
+        new_vlan = Vlan(int(data["host"]), data["name"],data["name"],"",[])
+        vlan_list.append(new_vlan)
+    return vlan_list
 def cyto_json():
     # Data input here
     vlan0 = Vlan(70, "vlan0", "An", "", [])
     vlan1 = Vlan(1, "vlan1", "Anal", "", [])
     vlan2 = Vlan(15,"vlan2", "Analyst", "", [])
-    vlan = [vlan0, vlan1, vlan2]
+    vlan = get_input_json()
     # --------------
     sorted_vlan = sortVlan(vlan)
     splitted_vlan = split_vlan(sorted_vlan)

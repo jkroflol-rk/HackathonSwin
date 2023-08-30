@@ -45,7 +45,7 @@ class ConfigDetail(DetailView):
 
 def connectserial(input, request):
     # creating your serial object
-
+    hostname = request.session.get('hostname')
     ser = serial.Serial(
         port='COM1',  # COM is on windows, linux is different
         baudrate=9600,  # many different baudrates are available
@@ -54,10 +54,16 @@ def connectserial(input, request):
         bytesize=8,
         timeout=0.1  # 8 seconds seems to be a good timeout, may need to be increased
     )
+    if request.session['enable'] == "1":
+        header = hostname + "# "
+    elif request.session['enable'] == "2":
+        header = hostname + "> "
+    else:
+        header = hostname + "(config)# "
     if (request.session.get('history') == None):
         request.session['history'] = ""
 
-    request.session['history'] += str(input) + "\n"
+    request.session['history'] += str(input) + "\n" + header
     
 
     # open your serial object
@@ -73,7 +79,7 @@ def connectserial(input, request):
     ser.inWaiting()
     output = ser.read(225)
     output = output.decode("utf-8","ignore")
-    return input
+    return header
         # serial_data = SwitchConfig(output=output) #output = Switch# enable
         # serial_data.save()
 # Press the green button in the gutter to run the script.
@@ -102,21 +108,37 @@ def connect_serial(request):
             if request.session.get('enable') != None:
                 com_port = form.cleaned_data['com_port']
 
+                request.session['hostname'] = "Switch"
+
+
+                    
+                if com_port.split()[0] == 'hostname':
+                    request.session['hostname'] = com_port[9::]
 
                 if com_port == "enable":
                     request.session['enable'] = "1"
                 elif com_port == "exit":
                     request.session['enable'] = "2"
-                elif com_port == "conf t":
+                elif com_port == "conf t" and request.session['enable'] == "1":
                     request.session['enable'] = "3"
 
-
-                if request.session['enable'] == "1":
-                    history =  connectserial("Switch# " + com_port, request)
-                elif request.session['enable'] == "2":
-                    history =  connectserial("Switch> " + com_port, request)
+                if com_port == 'enable':
+                    history = connectserial(com_port, request)
+                elif com_port == 'exit':
+                    history = connectserial(com_port, request)
+                elif com_port.split()[0] == 'hostname':
+                    history = connectserial(com_port, request)
+                elif com_port == 'conf t':
+                    history = connectserial(com_port, request)
                 else:
-                    history =  connectserial("Switch(config)# " + com_port, request)
+                    if request.session['enable'] == "1":
+                        subheader = "# "
+                    elif request.session['enable'] == "2":
+                        subheader = "> "
+                    else:
+                        subheader = "(config)# "                    
+                    request.session['history'] += "invalid command" + "\n" + request.session['hostname'] + subheader
+
             else:
                 request.session['enable'] = "2"
             return redirect('connect_serial')  # Redirect to a success page
@@ -126,6 +148,7 @@ def connect_serial(request):
         if request.session.get('history') != None:
             history = request.session.get('history')
         else:
+            request.session['history'] = "Switch>"
             history = "Switch>"
 
     return render(request, 'connectionform.html', {'form': form, 'history': history})
