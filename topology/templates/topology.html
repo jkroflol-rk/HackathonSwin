@@ -7,8 +7,8 @@
   <div class="col-3"  style="position: sticky; z-index: 1000; top: 200px; background-color: white;">
     <div id="list-example" class="list-group">
       <a class="list-group-item list-group-item-action" href="#list-item-1">View Configuration</a>
-      <a class="list-group-item list-group-item-action" href="#list-item-2">Add Configuration</a>
-      <a class="list-group-item list-group-item-action" href="#list-item-3">Add Connection</a>
+      <a class="list-group-item list-group-item-action" href="#list-item-2">Add Connection</a>
+      <a class="list-group-item list-group-item-action" href="#list-item-3">Documentation</a>
     </div>
   </div>
   <div class="col-8">
@@ -42,6 +42,22 @@
               <a type="button" class="btn btn-primary" href="/topology/book">Add Connection</a>
               {% else %}
               <a type="button" class="btn btn-primary" href="/signin">Add Connection</a>
+              {% endif %}
+          </div>
+      </div>
+      <hr style="background-color: #0c5460;">
+      <h4 id="list-item-3">Documentation</h4>
+      <div class="pb-5 d-flex flex-column flex-lg-row pt-4">
+          <img src="{% static 'images/documentation.jpg' %}" class="col-12 col-lg-5">
+          <div class="col-lg-8 pt-3 pb-3">
+
+            <span>Welcome to the Documentation Customization Zone! Here, you have full control over the content and style of your documentation. Find your specific preferences and requirements.</span>
+
+            <p>Your settings, your way. Let's begin.</p>
+              {% if user.is_authenticated %}
+              <a type="button" class="btn btn-primary" href="/topology/document">See Documentation</a>
+              {% else %}
+              <a type="button" class="btn btn-primary" href="/signin">See Documentation</a>
               {% endif %}
           </div>
       </div>

@@ -11,6 +11,6 @@ urlpatterns = [
     path('test', views.Vlan_input.as_view(), name="adsa"),
     path('', views.Topology.as_view(), name="topology"),
     path('book', views.Book.as_view(), name="book"),
-    path("counter", views.counter.as_view(), name="counter2"),
+    path('document', views.Document.as_view(), name="document")
 ]
 

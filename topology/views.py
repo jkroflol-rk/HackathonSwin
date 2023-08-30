@@ -169,3 +169,6 @@ class Wifi_input(CreateView):
 
 class Book(TemplateView):
     template_name = 'switchbook.html'
+
+class Document(TemplateView):
+    template_name = 'document.html'
