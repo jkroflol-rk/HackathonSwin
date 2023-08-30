@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, FileResponse
 from cyto import final, school, star
 from django.template import loader
-from models import VlanConfig, WifiConfig
+from .models import VlanConfig, WifiConfig
 def cyto(request):
     networkDevice, portDevice, vlan = final.cyto_json()
     saveJsonFile(networkDevice, "networkdevice.json")
