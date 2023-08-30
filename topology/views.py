@@ -70,6 +70,7 @@ def connectSerial(input, output):
         output = output.decode("utf-8","ignore")
         print(output)
         # serial_data = SwitchConfig(output=output) #output = Switch# enable
+        
         # serial_data.save()
 
 
