@@ -6,10 +6,10 @@
 
 import serial
 import time
-def connectSerial():
+def connectserial():
     # creating your serial object
     ser = serial.Serial(
-        port='COM6',  # COM is on windows, linux is different
+        port='COM1',  # COM is on windows, linux is different
         baudrate=9600,  # many different baudrates are available
         parity='N',  # no idea
         stopbits=1,
@@ -46,6 +46,6 @@ def connectSerial():
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     # print_hi('PyCharm')
-    connectSerial()
+    connectserial()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
