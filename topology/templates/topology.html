@@ -15,12 +15,12 @@
     <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
       <h4 id="list-item-1">View Configuration</h4>
       <div class="pb-5 d-flex flex-column flex-lg-row pt-4">
-          <img src="{% static 'images/editprofile.jpg' %}" class="col-12 col-lg-5">
+          <img src="{% static 'images/sw2960.jpg' %}" class="col-12 col-lg-5">
           <div class="col-lg-8 pt-3 pb-3">
 
-            <span>Welcome to our account management section, designed to make your life simpler. Here, you're in the driver's seat – update, tweak, or eliminate outdated information effortlessly.</span>
+            <span>Welcome to our configuration management system, designed to make managing all inputs and outputs much easier. Here, view, delete, add another configuration at your will.</span>
 
-            <p>Your account, your choices. Take action now.</p>
+            <p>Your configurations, your choices. Take action now.</p>
               {% if user.is_authenticated %}
               <a type="button" class="btn btn-primary" href="/topology/config">View Configuration</a>
               {% else %}
@@ -31,10 +31,10 @@
         <hr style="background-color: #0c5460;">
       <h4 id="list-item-2">Add Configuration</h4>
       <div class="pb-5 d-flex flex-column flex-lg-row pt-4">
-          <img src="{% static 'images/input.jpeg' %}" class="col-12 col-lg-5">
+          <img src="{% static 'images/networkicon-removebg-preview.png' %}" class="col-12 col-lg-5">
           <div class="col-lg-8 pt-3 pb-3">
 
-            <span>Welcome to the hub for managing your departments and hosts. Simplifying your experience, this section empowers you to make updates, modifications, or removals with ease.</span>
+            <span>Welcome to the hub for adding your departments and hosts. Simplifying your experience, this section empowers you to add configurations with ease.</span>
 
             <p>Your entities, your control. Let's get started.</p>
             {% if user.is_authenticated %}
@@ -50,7 +50,7 @@
           <img src="{% static 'images/gotoconfig.png' %}" class="col-12 col-lg-5">
           <div class="col-lg-8 pt-3 pb-3">
 
-            <span>Welcome to the Configuration Management Zone. Here, you're in command of customizations. Effortlessly adjust, modify, or remove configurations to match your preferences.</span>
+            <span>Welcome to the Connection Management Zone. Here, you're in command of customizations. Effortlessly adjust, modify, or remove connection to match your preferences.</span>
 
             <p>Your settings, your way. Let's begin.</p>
               {% if user.is_authenticated %}
