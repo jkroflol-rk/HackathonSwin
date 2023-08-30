@@ -49,8 +49,7 @@ class inputhome(TemplateView):
 
 class inputschool(TemplateView):
     template_name = "school.html"
-class counter(TemplateView):
-    template_name = "counter.html"
+
 
 def process(request):
     department = int(request.POST['departments'])
