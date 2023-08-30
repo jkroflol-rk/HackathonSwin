@@ -48,16 +48,39 @@ var cy = cytoscape({
     },
   ],
 });
+var wifi_url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5S-GKTOAL85PnZgEFJ6CTMgQZRlddCJ56mduAicJABsu505VDYJ8CxyGJnXXZ00PMAlk&usqp=CAU"
+var printer_url = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWcAAACMCAMAAACXkphKAAAAclBMVEUPc6D///8Aa5sAbZ0AaJkDcZ/c6fCnx9iOssk4ganX5++61OHF2eQAbp0Ab50AZ5ltob4AYpbr8/fz+PqEr8eSuM15qcPE2ORkm7qavdFqn7yHsckAX5RYlrdJjrKzzt0aeaQ8h60jfqfQ4OpPkLMufKZ3kYLRAAAGaElEQVR4nO3d6ZqaMBQGYJoFRzTEcV/GAdTe/y0WSVCWsCgx6UPO96/OSMv7pJoTDsH7AzERz/Y/wJGAs5mAs5l0OvsjTrA0QZyly/nrm4w2P7eVEeN7Opy/iDfa4L0Z4iztzidkG+NzQYLZ0JBudT6NeDRL5s3MCHOr83r8zIefuXXnUTMfBTMn1p1HzSxHM/KQbef1+L8CD+lIsu086tEsPjQ291O07LwdM/PiyWzZ2Rlmu87bMX82l5itOrswmnn+Z3vOLoxm/njBmvPCAebnf1hrzi4wF07RlrMDzCdefM2OswvMpW95O85H15jtOLvAXDlFG86jZt5mp1hbtrHg7CKzBef9iJlJE7N559s3Gm24ZFaMpA85B+ut2nkZjDh+dorKZZtPOPub+Odcec2dvi/1BSLtzv4hIRhVmd1xblgd0+vsT24YU4/91n7iinPwrf6G1Oi8in4potTz2LT+w8w5WH+NOKd7K0zQsKauy3kVnXmG7Hlhouhxypxn33jE4adPO69mixBReUR6UXWhCucRT509D3991nm+iEn4OCCNfdUvgfMw5Os2Rqx4QKJkBuchzsHa4yVkj7JA/avg/C6yv7lwXD0cazocOL+JnNwnypVQ1NjlC86vIy8PCasjp+FR43vA+UXk1SThmKqUPT5pfhs4v4QcnTFSGt8PtWl5Jzj3R54dvfIcrnykU9ubwbmnclqNoFB9DHGgbevbwbkP8nVLW5EfPdXg/L5zsI5J88eF/DtqC87gXEqXc7BJSK0aqYV1MYNzm3NajTDWNL0ohKlWQsG5mGbn5WGKlNVILezSfVMtOKuRJ7+8H3LKHPe4dxmcFcjROWysRqphXLmuD87l1JxXs31ajfRTpiEJt/0m4M4770oc8yNrKfnKSX/z2PsufNedeWE4zreUhD1HMkPeefbCnhKOOz/3OrmuL53VSB6K2Dl6bc8ft53ZTSgEp75zuBQZ89vk5Y2VnHZmSWYwueCeX3wpMroc3tm9ymVnWcZNeF9khpON+nI2ODc7s2k2MKOed/9ikpwaLmaD8z0NzjQWzH0+lykj8fp9ZJedKcs+AXbdi3FeiPD2OgTZYWfJfO08c4bi466VEJxFVM40zAZo0DGa02pk/0o1As4VZ5yVgX7c9tlMEdq/WI2Ac8mZ8mxdYtnMTGk6vZho3KvRRWcq+oaWcVOdTTFLXi/5wLnijA73k15d1MyUoeTwZjUCzgVnkjH/SZTMmEy/tCM76UxE39BNMdVghA4o+cC56IzW2Xmf663LKB5cjYBz7iy3h6js50JDFC8+eqe3Y85yZ9HyTZsMhUc91Qg4C2cs1vULe8pQivg5+vym5k45y/uBH9uqpcj0V2c1As53Z7muf5DMaTXyq7kaAefUWbZnTbIWGMr4r/5qBJwDItf1Z/erVJhf3r0ABc5NEc5cMO8IZTj+VDUCzgHKxu+c8MsHqxFwvma417QaeU4vrgfDz11ywFmkUI34m0uvRk9w7puCc57l4YJIj+5wcH4hVWfRQy4n0zuT+9c55LyciDtaJfOVa7iWDc5Zns6r6OyJTYxyZmz0uUtuOM/2jx7ynJmZ3ffSAefVgpFHU6hknqcvgLO2iDrl+9lDUGAGZ32pXoctMoOzvlScc2ZxzuCsLWXnfN4sr8OCs7aUnHGSnfYub94AZ20pOmM5mh89MuCsLcXrsJLZ0nOXXHHG4jps8XTBWVue12Elc7EVCZy15XEdVjKX+hfBWVukc87MSz8EZ22RdfdNMpd7+MFZW8T1wUQwV9tEwVlbMmd/pWQGZ315rvPP6rcYE6PXU0b8zCWEeL7xZ6S4YZ6bHM/+ZNSRfTGRYm+p1j1utTs7kUhxQwpp33xVY5xxjlQPa9t3v09TXHFe/Si+IM0xO/P57NenGp173Gp3dmC+Ud/nRN6rYtR5/PPnmrPqoWrgPCRK53BqsovRWWdmsifXXeeGh6qB85Ao9jlhppnddEbGmZ10ZhZuBHLQGRtaCnXbmaLmh6qB85CUndseqgbOQ1JylpsjgbP+lPY5MbWu77az3BwJnD+Rp3PHs+vAeVAezl3PrgPnQcmdja7ru+ss++vA+VOR/XXdz64D50ER/XV9HqoGzkMi+usMr+u76mw7wpnTEQf9N867v9MR56+lJY1SXOlHsh1wNhNwNhNwNhNwNhNwNhNwNpN/1lvHbyOu3M4AAAAASUVORK5CYII="
 var pc_url = "data:image/png;base64,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"
 vlan.forEach(VLAN => {
-  cy.add({
-    data: { id: VLAN.id, label: VLAN.id },
-    style: {
-      "background-image": pc_url,
-      "background-fit": "contain",
-      "background-opacity": "0",
-    }
-  })
+  if (VLAN.id.includes("Wifi")) {
+    cy.add({
+      data: { id: VLAN.id, label: VLAN.id },
+      style: {
+        "background-image": wifi_url,
+        "background-fit": "contain",
+        "background-opacity": "0",
+      }
+    })
+  }
+  else if (VLAN.id.includes("Printer")) {
+    cy.add({
+      data: { id: VLAN.id, label: VLAN.id },
+      style: {
+        "background-image": printer_url,
+        "background-fit": "contain",
+        "background-opacity": "0",
+      }
+    })
+  } else {
+    cy.add({
+      data: { id: VLAN.id, label: VLAN.id },
+      style: {
+        "background-image": pc_url,
+        "background-fit": "contain",
+        "background-opacity": "0",
+      }
+    })
+  }
 });
 
 for (let i = 0; i < networkDevice.length; i++) {
