@@ -172,20 +172,24 @@ def defineRoomPort(room, accessDevice, portDevice, number):
                 )
                 portDevice.append(new_port)
 
+def get_input_json():
+    room_array  =[]
+    file = open('./static/js/outputschool.json', 'r')
+    json_file = json.loads(file.read())
+    student_num = json_file["student"]
+    room_list = json_file["room"]
+    for room in room_list:
+        new_room = Room(int(room["host"]), room["name"], room["name"],"",[])
+        room_array.append(new_room)
+    return student_num, room_array
 def main():
     #data input
-    studentNum=1200
-    room1=Room(40,"vlan0","Room 1","",[])
-    room2=Room(50,"vlan1","Room 2","",[])
-    room3=Room(35,"vlan2","Room 3","",[])
-    
-    
-    room=[room1,room2,room3]
+    studentNum, room = get_input_json()
     room=split_room(room)
     room=sortRoom(room)
     room=mergeRoom(room)
 
-    APs_num=ceil(studentNum/800)
+    APs_num=ceil(studentNum/300)
     accSwt_num=2+len(room)
     
     portDevice = []

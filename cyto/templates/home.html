@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div id="form-container" class="animate__animated animate__fadeInDown">
+    <form action="{% url 'process_home' %}" method="POST" id="form">
+        {% csrf_token %}
+        <h1>LAN Design</h1>
+        <label for="wifi">Enter the number of Access Point:</label>
+        <input type="number" name="wifi" id="wifi" placeholder="Max number is 5!" max="5" required>
+        <label for="pc">Enter the number of User Device:</label>
+        <input type="number" name="pc" id="pc" placeholder="Max number is 5!" max="5" required>
+        <label for="printer">Enter the number of Printer:</label>
+        <input type="number" name="printer" id="printer" placeholder="Max number is 5!" max="5" required>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock content %}
+

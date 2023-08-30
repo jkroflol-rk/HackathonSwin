@@ -78,16 +78,19 @@ def createPortObject(port_array, source_devices, target_devices):
         for source in source_devices:
             connect(source,target,port_array)
 
-
+def get_input_json():
+    file = open('./static/js/outputhome.json', 'r')
+    devices = json.loads(file.read())
+    return devices
 
 def main():
     #data input
-    pcNum=2
-    printerNum=4
-    wifiNum=2
+    data_input = get_input_json()
+    pcNum= int(data_input["pcnum"])
+    printerNum= int(data_input["printernum"])
+    wifiNum=int(data_input["wifinum"])
     sum=pcNum+printerNum+wifiNum
     accSwt_num=ceil(sum/23)
-    
     portDevice = []
     accessDevice=[]
     router=[]
