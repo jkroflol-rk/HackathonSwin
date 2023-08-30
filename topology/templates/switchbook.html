@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-center p-5">
+
+    <div class="col-6">
+        <h1 class="text-center pb-5">Book a Switch</h1>
+        <table class="d-flex justify-content-evenly p-5" style="border: 1px solid black; border-collapse: collapse;">
+            <tr>
+                <th class="pr-5 pl-5">Switch</th>
+                <th class="pr-5 pl-5">Availability</th>
+                <th>Book</th>
+            </tr>
+            <tr>
+                <td class="pr-5 pl-5">Switch 1</td>
+                <td class="d-flex justify-content-center"><a href="" class="btn btn-success" style="pointer-events: none;">Available</a></td>
+                <td><a href="{% url 'connect_serial' %}" class="btn btn-primary">Book</a></td>
+            </tr>
+            <tr>
+                <td class="pr-5 pl-5">Switch 2</td>
+                <td class="d-flex justify-content-center"><a href="" class="btn btn-success" style="pointer-events: none;">Available</a></td>
+                <td><a href="{% url 'connect_serial' %}" class="btn btn-primary">Book</a></td>
+            </tr>
+            <tr>
+                <td class="pr-5 pl-5">Switch 3</td>
+                <td class="d-flex justify-content-center"><a href="" class="btn btn-danger" style="pointer-events: none;">Occupied</a></td>
+                <td><a href="" class="btn btn-danger" style="pointer-events: none;">Booked</a></td>
+            </tr>
+            <tr>
+                <td class="pr-5 pl-5">Switch 4</td>
+                <td class="d-flex justify-content-center"><a href="" class="btn btn-danger" style="pointer-events: none;">Occupied</a></td>
+                <td><a href="" class="btn btn-danger" style="pointer-events: none;">Booked</a></td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}

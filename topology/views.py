@@ -99,8 +99,26 @@ def connect_serial(request):
     if request.method == 'POST':
         form = SerialConnectionForm(request.POST)
         if form.is_valid():
-            com_port = form.cleaned_data['com_port']
-            history =  connectserial(com_port, request)
+            if request.session.get('enable') != None:
+                com_port = form.cleaned_data['com_port']
+
+
+                if com_port == "enable":
+                    request.session['enable'] = "1"
+                elif com_port == "exit":
+                    request.session['enable'] = "2"
+                elif com_port == "conf t":
+                    request.session['enable'] = "3"
+
+
+                if request.session['enable'] == "1":
+                    history =  connectserial("Switch# " + com_port, request)
+                elif request.session['enable'] == "2":
+                    history =  connectserial("Switch> " + com_port, request)
+                else:
+                    history =  connectserial("Switch(config)# " + com_port, request)
+            else:
+                request.session['enable'] = "2"
             return redirect('connect_serial')  # Redirect to a success page
     else:
 
@@ -108,7 +126,7 @@ def connect_serial(request):
         if request.session.get('history') != None:
             history = request.session.get('history')
         else:
-            history = "Nothing"
+            history = "Switch>"
 
     return render(request, 'connectionform.html', {'form': form, 'history': history})
     
@@ -123,3 +141,6 @@ class Wifi_input(CreateView):
     fields = ['wifi_num', 'printer_num', 'devices_num']
     success_url = 'config'
     template_name = 'addconfig.html'
+
+class Book(TemplateView):
+    template_name = 'switchbook.html'
