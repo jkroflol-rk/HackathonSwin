@@ -11,6 +11,6 @@ urlpatterns = [
     path('dashboard', views.Dashboard.as_view(), name='dashboard'),
     path('editprofile', views.EditProfile.as_view(), name='edit'),
     path('about', views.About.as_view(), name='about')
-
+    
 ]
 

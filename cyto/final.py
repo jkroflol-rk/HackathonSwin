@@ -1,13 +1,18 @@
 from math import *
+import jsonify
 import json
-
 
 class deviceObject:
     def __init__(self, id, label, layer):
         self.data = {"id": id, "label": label, "layer": layer}
         self.switchPorts = {}
         self.connected = 0
-
+    def serialize(self):
+        return {
+            'data': self.data,
+            'switchPorts': self.switchPorts,
+            'connected': self.connected
+        }
 
 class portObject:
     def __init__(self, source, target, sourceLabel, targetLabel):
@@ -17,7 +22,11 @@ class portObject:
             "target": target["id"],
         }
         self.style = {"sourceLabel": sourceLabel, "targetLabel": targetLabel}
-
+    def serialize(self):
+        return {
+            'data': self.data,
+            'style': self.style
+        }
 
 class Vlan:
     def __init__(self, host, id, name, switch, switchport):
@@ -50,13 +59,14 @@ def split_vlan(vlan):
             for j in range(numSplit - 1):
                 newVlan = Vlan(newHost, vlan[i].id + "_" + str(j), vlan[i].name, "", [])
                 vlan.append(newVlan)
-                newVlan = Vlan(
-                    vlan[i].host - newHost * (numSplit - 1),
-                    vlan[i].id + "_" + str(numSplit - 1),
-                    vlan[i].name,
-                    "",
-                    [],
-                )
+
+            newVlan = Vlan(
+                vlan[i].host - newHost * (numSplit - 1),
+                vlan[i].id + "_" + str(numSplit - 1),
+                vlan[i].name,
+                "",
+                [],
+            )
             vlan.append(newVlan)
             vlan.pop(i)
         else:
@@ -142,12 +152,12 @@ def createPortObject(port_array, source_devices, target_devices):
 
 
 # Connect 1 Vlan to 1 Access Switch
-def connectVlan(vlan, accessDevice):
+def connectVlan(vlan, accessDevice,distnum):
     for VLAN in vlan:
         portIndex = 0
         check = False
         for access in accessDevice:
-            if VLAN.host <= 24 - access.connected:
+            if access.connected==distnum:
                 for i in range(VLAN.host):
                     for port in access.switchPorts:
                         if access.switchPorts[port] == False:
@@ -182,11 +192,11 @@ def defineVlanPort(vlan, accessDevice, portDevice, number):
                 portDevice.append(new_port)
 
 
-def main():
+def cyto_json():
     # Data input here
-    vlan0 = Vlan(12, "vlan0", "An", "", [])
-    vlan1 = Vlan(13, "vlan1", "Anal", "", [])
-    vlan2 = Vlan(14, "vlan2", "Analyst", "", [])
+    vlan0 = Vlan(70, "vlan0", "An", "", [])
+    vlan1 = Vlan(1, "vlan1", "Anal", "", [])
+    vlan2 = Vlan(15,"vlan2", "Analyst", "", [])
     vlan = [vlan0, vlan1, vlan2]
     # --------------
     sorted_vlan = sortVlan(vlan)
@@ -213,7 +223,10 @@ def main():
     createPortObject(portDevice, coreDevice, distDevice)
     createPortObject(portDevice, distDevice, accessDevice)
     # Connect Dist - Access Switch
-    connectVlan(merge_vlan, accessDevice)
+    connectVlan(merge_vlan, accessDevice, distSwt_num)
     defineVlanPort(vlan, accessDevice, portDevice, distSwt_num)
     networkDevice = accessDevice + distDevice + coreDevice + router
-    return networkDevice, portDevice, vlan
+    networkDeviceJson = json.dumps([z.__dict__ for z in networkDevice])
+    portDeviceJson = json.dumps([z.__dict__ for z in portDevice])
+    vlanJson = json.dumps([z.__dict__ for z in merge_vlan])
+    return networkDeviceJson, portDeviceJson, vlanJson

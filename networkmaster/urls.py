@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('base.urls')),
     path('topology/', include('topology.urls')),
+    path('cyto/', include('cyto.urls')),
 ]
