@@ -4,7 +4,7 @@
     <div class="border round p-5">
         <h1 class="text-center pb-5">Add Your Connection</h1>
         <!-- <h1>{{finaloutput}}</h1> -->
-        <pre style="border: solid 1px black">{{history}}</pre>
+        <pre style="border: solid 1px black; color: white; background-color: black; padding: 3px 3px 3px 3px;">{{history}}</pre>
         <form method="post">    
             {% csrf_token %}
             {{ form.as_p }}
