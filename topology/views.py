@@ -98,6 +98,8 @@ def connectserial(input, request):
     
 #     request.session['output'] += str(finaloutput)
 #     return finaloutput
+class counter(TemplateView):
+    template_name = "counter.html"
 
 
 
@@ -108,7 +110,6 @@ def connect_serial(request):
             if request.session.get('enable') != None:
                 com_port = form.cleaned_data['com_port']
                 if  request.session.get('hostname') == None:
-
                     request.session['hostname'] = "Switch"
 
 
