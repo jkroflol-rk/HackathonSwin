@@ -45,7 +45,7 @@ class ConfigDetail(DetailView):
 
 def connectserial(input, request):
     # creating your serial object
-    hostname = request.session['hostname']
+    hostname = request.session.get('hostname')
     ser = serial.Serial(
         port='COM1',  # COM is on windows, linux is different
         baudrate=9600,  # many different baudrates are available
@@ -79,7 +79,7 @@ def connectserial(input, request):
     ser.inWaiting()
     output = ser.read(225)
     output = output.decode("utf-8","ignore")
-    return input
+    return header
         # serial_data = SwitchConfig(output=output) #output = Switch# enable
         # serial_data.save()
 # Press the green button in the gutter to run the script.
@@ -109,16 +109,10 @@ def connect_serial(request):
                 com_port = form.cleaned_data['com_port']
 
                 request.session['hostname'] = "Switch"
-                array = ["enable", "conf t", "exit", "hostname "] 
-                for word in array:
-                    if com_port.startwith(word) == False:
-                        request.session['history'] += "invalid command"
-                    else:
-                        history = connectserial(com_port, request)
 
 
                     
-                if com_port.startwith("hostname "):
+                if com_port.split()[0] == 'hostname':
                     request.session['hostname'] = com_port[9::]
 
                 if com_port == "enable":
@@ -128,6 +122,22 @@ def connect_serial(request):
                 elif com_port == "conf t" and request.session['enable'] == "1":
                     request.session['enable'] = "3"
 
+                if com_port == 'enable':
+                    history = connectserial(com_port, request)
+                elif com_port == 'exit':
+                    history = connectserial(com_port, request)
+                elif com_port.split()[0] == 'hostname':
+                    history = connectserial(com_port, request)
+                elif com_port == 'conf t':
+                    history = connectserial(com_port, request)
+                else:
+                    if request.session['enable'] == "1":
+                        subheader = "# "
+                    elif request.session['enable'] == "2":
+                        subheader = "> "
+                    else:
+                        subheader = "(config)# "                    
+                    request.session['history'] += "invalid command" + "\n" + request.session['hostname'] + subheader
 
             else:
                 request.session['enable'] = "2"
