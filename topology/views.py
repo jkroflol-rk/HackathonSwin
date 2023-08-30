@@ -14,6 +14,9 @@ from .forms import WifiForm
 from .models import WifiConfig
 from .models import VlanConfig
 from django.views.generic import TemplateView
+from .forms import SerialConnectionForm
+import serial
+import time
 # Create your views here.
 
 class CreateConfigCLI(CreateView):
@@ -39,58 +42,56 @@ class ConfigDetail(DetailView):
     context_object_name = "config"
     template_name = "configdetail.html"
     # login_url = "/login"
-from .forms import SerialConnectionForm
-import serial
-import time
-# def connectSerial(input, output):
-#     # creating your serial object
-#     ser = serial.Serial(
-#         port='COM6',  # COM is on windows, linux is different
-#         baudrate=9600,  # many different baudrates are available
-#         parity='N',  # no idea
-#         stopbits=1,
-#         bytesize=8,
-#         timeout=0.1  # 8 seconds seems to be a good timeout, may need to be increased
-#     )
 
-#     # open your serial object
-#     ser.isOpen()
-#     # in this case it returns str COM3
-#     print(ser.name)
-#     # first command (hitting enter)
+def connectserial(input, request):
+    # creating your serial object
 
-#     # wait a sec
-#     time.sleep(0.1)
-#     ser.inWaiting()
-#     # get the response from the switch
-#     input_data = ser.read(225)  # (how many bytes to limit to read)
-#     input_data = input_data.decode("utf-8", "ignore")
-#     # print response
-#     print(input_data)
-#     # create a loop
-#     while 1:
-#         command = input('')
-#         command = str.encode(command+'\r\n')
-#         ser.write(command)
-#         time.sleep(0.1)
-#         ser.inWaiting()
-#         output = ser.read(225)
-#         output = output.decode("utf-8","ignore")
-#         print(output)
-#         # serial_data = SwitchConfig(output=output) #output = Switch# enable
-#         # serial_data.save()
-def connectSerial(input, output, request):
-    input = int(input)
-    finaloutput = input * input
-
-    if (request.session.get('history') == None and request.session.get('output') == None):
+    ser = serial.Serial(
+        port='COM1',  # COM is on windows, linux is different
+        baudrate=9600,  # many different baudrates are available
+        parity='N',  # no idea
+        stopbits=1,
+        bytesize=8,
+        timeout=0.1  # 8 seconds seems to be a good timeout, may need to be increased
+    )
+    if (request.session.get('history') == None):
         request.session['history'] = ""
-        request.session['output'] = ""
 
-    request.session['history'] += str(finaloutput) + "\n"
+    request.session['history'] += str(input) + "\n"
     
-    request.session['output'] += str(finaloutput)
-    return finaloutput
+
+    # open your serial object
+    ser.isOpen()
+    # in this case it returns str COM3
+    print(ser.name)
+
+    # create a loop
+    command = input
+    command = str.encode(command+'\r\n')
+    ser.write(command)
+    time.sleep(0.1)
+    ser.inWaiting()
+    output = ser.read(225)
+    output = output.decode("utf-8","ignore")
+    return input
+        # serial_data = SwitchConfig(output=output) #output = Switch# enable
+        # serial_data.save()
+# Press the green button in the gutter to run the script.
+
+
+
+# def connectSerial(input, output, request):
+#     input = int(input)
+#     finaloutput = input * input
+
+#     if (request.session.get('history') == None and request.session.get('output') == None):
+#         request.session['history'] = ""
+#         request.session['output'] = ""
+
+#     request.session['history'] += str(finaloutput) + "\n"
+    
+#     request.session['output'] += str(finaloutput)
+#     return finaloutput
 
 
 
@@ -100,19 +101,18 @@ def connect_serial(request):
         if form.is_valid():
             com_port = form.cleaned_data['com_port']
             baud_rate = form.cleaned_data['baud_rate']
-            finaloutput =  connectSerial(com_port, baud_rate, request)
+            history =  connectserial(com_port, request)
             return redirect('connect_serial')  # Redirect to a success page
     else:
 
         form = SerialConnectionForm()
-        if(request.session.get('output') != None and request.session.get('history') != None):
+        if request.session.get('history') != None:
             finaloutput = request.session.get('output')
             history = request.session.get('history')
         else:
-            finaloutput = "Nothing"
             history = "Nothing"
 
-    return render(request, 'connectionform.html', {'form': form, 'finaloutput': finaloutput, 'history': history})
+    return render(request, 'connectionform.html', {'form': form, 'history': history})
     
 class Vlan_input(CreateView):
     model = VlanConfig
