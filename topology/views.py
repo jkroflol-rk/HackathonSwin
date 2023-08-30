@@ -100,14 +100,12 @@ def connect_serial(request):
         form = SerialConnectionForm(request.POST)
         if form.is_valid():
             com_port = form.cleaned_data['com_port']
-            baud_rate = form.cleaned_data['baud_rate']
             history =  connectserial(com_port, request)
             return redirect('connect_serial')  # Redirect to a success page
     else:
 
         form = SerialConnectionForm()
         if request.session.get('history') != None:
-            finaloutput = request.session.get('output')
             history = request.session.get('history')
         else:
             history = "Nothing"
@@ -125,3 +123,6 @@ class Wifi_input(CreateView):
     fields = ['wifi_num', 'printer_num', 'devices_num']
     success_url = 'config'
     template_name = 'addconfig.html'
+
+class Book(TemplateView):
+    template_name = 'switchbook.html'
