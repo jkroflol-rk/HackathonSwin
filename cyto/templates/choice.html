@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<a type="button" class="btn btn-primary" href="/cyto/input">Office</a>
-<a type="button" class="btn btn-primary" href="/cyto/inputhome">Home</a>
-<a type="button" class="btn btn-primary" href="/cyto/inputschool">School</a>
+<h1 class="text-center p-5">Customize with your preferences</h1>
+
+<div class="col d-flex justify-content-center">
+    <div class="col-lg-3 col-8 office_main p-2 d-flex flex-column justify-content-center align-items-center" >
+        <img src="{% static 'images/office.jpg' %}" alt="sdf" class="col-12 office " >
+        <a href="/cyto/input" class="office_1 col row text-center text-dark font-weight-bold">Office</a>
+    </div>
+    <div class="col-lg-3 col-8 office_main p-2 d-flex flex-column justify-content-center align-items-center" >
+        <img src="{% static 'images/house.jpg' %}" alt="sdf" class="col-12 office " >
+        <a href="/cyto/inputhome" class="office_1 col row text-center text-light font-weight-bold">Home</a>
+    </div>
+    <div class="col-lg-3 col-8 office_main p-2 d-flex flex-column justify-content-center align-items-center" >
+        <img src="{% static 'images/school.jpg' %}" alt="sdfs" class="col-12 office " >
+        <a href="/cyto/inputschool" class="office_1 col row text-center text-light font-weight-bold">School</a>
+    </div>
+</div>
+
+
+
 {% endblock content %}

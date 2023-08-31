@@ -13,4 +13,5 @@ urlpatterns = [
     path("processschool", views.process_school, name="process_school"),
     path("inputschool", views.inputschool.as_view(), name="inputschool"),
     path("choice", views.choice.as_view(), name="choice"),
+
 ]

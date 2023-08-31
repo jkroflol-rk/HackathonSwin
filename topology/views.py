@@ -98,6 +98,8 @@ def connectserial(input, request):
     
 #     request.session['output'] += str(finaloutput)
 #     return finaloutput
+class counter(TemplateView):
+    template_name = "counter.html"
 
 
 
@@ -107,8 +109,8 @@ def connect_serial(request):
         if form.is_valid():
             if request.session.get('enable') != None:
                 com_port = form.cleaned_data['com_port']
-
-                request.session['hostname'] = "Switch"
+                if  request.session.get('hostname') == None:
+                    request.session['hostname'] = "Switch"
 
 
                     
@@ -167,3 +169,6 @@ class Wifi_input(CreateView):
 
 class Book(TemplateView):
     template_name = 'switchbook.html'
+
+class Document(TemplateView):
+    template_name = 'document.html'
